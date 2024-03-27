@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+#import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -52,12 +53,12 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
-
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZERS': 'drf_api.serializers.CurrentUserSerializer'
 }
 
-DATABASES = {
+if 'DEV' in os.environ:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'cope_size_yeast_155993',
@@ -68,6 +69,10 @@ DATABASES = {
             'OPTIONS': {'sslmode': 'require'},
         }
     }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -76,11 +81,20 @@ DATABASES = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+#DEBUG = 'DEV' in os.environ
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'world-of-craft-670e0fb14b24.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com']
+"""
+CORS_ALLOWED_ORIGIN_REGEXES = []
 
-
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES.append(rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$")
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        'https://world-of-craft-0e06bf8581a1.herokuapp.com/',
+    ]"""
 # Application definition
 
 INSTALLED_APPS = [
@@ -106,10 +120,10 @@ INSTALLED_APPS = [
     'crafts_profiles',
     'crafts_posts',
     'crafts_likes',
-    'crafts_comments',
     'crafts_followers',
-    'crafts_panel',
+    'crafts_comments',
     'crafts_contact',
+    'crafts_panel',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -122,14 +136,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOWED_ORIGINS = [
+
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
         'http://localhost:3000',
         os.environ.get('CLIENT_ORIGIN')
     ]
+else:
+    CORS_ALLOWED_ORIGINS= [
+        'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com/'
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
-
-ACCESS_CONTROL_ALLOW_ORIGIN = ('https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com', 'http://localhost:3000/')
 
 ROOT_URLCONF = 'drf_api.urls'
 
@@ -154,7 +172,7 @@ WSGI_APPLICATION = 'drf_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-    
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -188,14 +206,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-"""
+# Email settings
+# https://docs.djangoproject.com/en/5.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-"""
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True   
