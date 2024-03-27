@@ -1,4 +1,4 @@
-#!/Users/elvir/world_of_craft/backend/venv/bin/python
+#!/Users/elvir/world_of_craft/world_of_craft/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

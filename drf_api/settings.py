@@ -130,7 +130,7 @@ if 'CLIENT_ORIGIN' in os.environ:
     ]
 else:
     CORS_ALLOWED_ORIGINS= [
-        'https://frontend-woc-653e69cc17a6.herokuapp.com'
+        'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com'
     ]
 
 CORS_ALLOW_CREDENTIALS = True
