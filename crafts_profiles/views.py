@@ -32,6 +32,7 @@ class ProfileList(generics.ListAPIView):
         'following_count',
         'owner__following__created_at',
         'owner__followed__created_at',
+        'posts',
     ]
     
 class ProfileDetail(generics.RetrieveUpdateAPIView):
@@ -45,7 +46,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         following_count=Count('owner__following', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
-    """
+ 
     def get_object(self):
         # Get the profile object based on the provided username
         username = self.kwargs.get('username')
@@ -56,5 +57,4 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         
         return profile
 
-    """
 
