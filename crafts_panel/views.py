@@ -9,6 +9,7 @@ class PanelCreateView(generics.CreateAPIView):
     serializer_class = PanelSerializer
     permission_classes = [IsAdminUser]
 
+
     def perform_create(self, serializer):
         if not self.request.user.is_staff:
             raise PermissionDenied("You do not have permission to create a panel post.")

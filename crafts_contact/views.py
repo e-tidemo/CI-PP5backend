@@ -17,6 +17,7 @@ class ContactAPIView(APIView):
                 {"error": "Please fill in all the required fields"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
         Contact.objects.create(
             name=name, email=email, subject=subject, message=message
         )
