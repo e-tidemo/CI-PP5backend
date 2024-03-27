@@ -130,12 +130,11 @@ if 'CLIENT_ORIGIN' in os.environ:
 else:
     CORS_ALLOWED_ORIGINS = [
         'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com',
-        'http://localhost:3000'
     ]
 
 CORS_ALLOW_CREDENTIALS = True
 
-ACCESS_CONTROL_ALLOW_ORIGIN = ('https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com')
+ACCESS_CONTROL_ALLOW_ORIGIN = ('https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com', 'http://localhost:3000/')
 
 ROOT_URLCONF = 'drf_api.urls'
 
