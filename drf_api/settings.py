@@ -78,7 +78,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'world-of-craft-670e0fb14b24.herokuapp.com']
 
 
 # Application definition
@@ -130,7 +130,7 @@ if 'CLIENT_ORIGIN' in os.environ:
     ]
 else:
     CORS_ALLOWED_ORIGINS= [
-        'https://frontend-woc-653e69cc17a6.herokuapp.com/'
+        'https://frontend-woc-653e69cc17a6.herokuapp.com'
     ]
 
 CORS_ALLOW_CREDENTIALS = True
