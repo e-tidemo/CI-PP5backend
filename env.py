@@ -6,4 +6,4 @@ os.environ['SECRET_KEY'] = 'uXAfrboewjnrf213'
 os.environ['DEV'] = '1'
 os.environ['DATABASE_URL'] = "postgres://uu7w01oe1zf:yPQRdm2AtaSK@ep-gentle-mountain-a23bxz6h.eu-central-1.aws.neon.tech/cope_size_yeast_155993"
 
-os.environ.setdefault("CLIENT_ORIGIN", "https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com/")
+os.environ.setdefault("CLIENT_ORIGIN", "https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com")
