@@ -81,8 +81,11 @@ else:
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = 'DEV' in os.environ
-DEBUG = True
+# DEBUG = 'DEV' in os.environ
+if 'DEV' in os.environ:
+    DEBUG = True  # Set DEBUG to True for development
+else:
+    DEBUG = False  # Set DEBUG to False for production
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com']
 """
