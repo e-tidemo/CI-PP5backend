@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-#import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -208,7 +207,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
