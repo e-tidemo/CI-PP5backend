@@ -54,15 +54,17 @@ class Contact(models.Model):
         default=ContactChoices.OTHER,
         null=False
         )
-
-    class Meta:
-        verbose_name = 'Email to admin of World of Craft'
-        verbose_name_plural = 'Emails to admin of World of Craft'
-
+    
     def __str__(self):
         # Return the sender's name and the subject of the email.
         return self.name + " - " + self.subject
+"""
+    class Meta:
+        verbose_name = 'Email to admin of World of Craft'
+        verbose_name_plural = 'Emails to admin of World of Craft'
+"""
 
+"""
     def save(self, *args, **kwargs):
         super().save()
         recipients = [settings.EMAIL_HOST_USER],
@@ -86,7 +88,8 @@ class Contact(models.Model):
                 '<p>' + 'On the subject of' + 
                 self.ContactChoices + '</p>'
             )
-
+"""
+"""
         msg = EmailMultiAlternatives(subject, text_content, from_email, recipients)
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
@@ -95,3 +98,4 @@ class Contact(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.send_confirmation_email()
+"""        
