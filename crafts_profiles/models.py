@@ -9,7 +9,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     content = models.TextField(max_length=500, null=True, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='/default_profile_rkxcnv'
+        upload_to='images/', default='default_profile_rkxcnv'
     )
 
     class Meta:
