@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -81,10 +82,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'DEV' in os.environ
-DEBUG = 'DEBUG' in os.environ
+if 'DEV' in os.environ:
+    DEBUG = True  # Set DEBUG to True for development
+else:
+    DEBUG = False  # Set DEBUG to False for production
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com']
-"""
+
 CORS_ALLOWED_ORIGIN_REGEXES = []
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
@@ -93,7 +97,8 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         'https://world-of-craft-0e06bf8581a1.herokuapp.com/',
-    ]"""
+        r"^https://.*\.gitpod\.io$",
+    ]
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,10 +150,6 @@ else:
     CORS_ALLOWED_ORIGINS= [
         'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com'
     ]
-
-CORS_ALLOWED_ORIGIN_REGEXES = [
-r"^https://.*\.gitpod\.io$",
-]
 
 CORS_ALLOW_CREDENTIALS = True
 
