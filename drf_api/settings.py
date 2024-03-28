@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -88,7 +87,7 @@ else:
     DEBUG = False  # Set DEBUG to False for production
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com']
-
+"""
 CORS_ALLOWED_ORIGIN_REGEXES = []
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
@@ -97,8 +96,7 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         'https://world-of-craft-0e06bf8581a1.herokuapp.com/',
-        r"^https://.*\.gitpod\.io$",
-    ]
+    ]"""
 # Application definition
 
 INSTALLED_APPS = [
@@ -150,6 +148,11 @@ else:
     CORS_ALLOWED_ORIGINS= [
         'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com'
     ]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.gitpod\.io$",
+    'http://localhost:3000',
+    'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com'
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -209,7 +212,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
