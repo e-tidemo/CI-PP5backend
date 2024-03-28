@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from rest_framework import generics, permissions
@@ -6,6 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
+from crafts_posts.models import Post
 
 
 class CommentList(generics.ListCreateAPIView):
@@ -19,7 +20,9 @@ class CommentList(generics.ListCreateAPIView):
     filterset_fields = ['post']
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        post_id = self.request.data.get('post')
+        post = get_object_or_404(Post, pk=post_id)
+        serializer.save(owner=self.request.user, post=post)
 
 
 
