@@ -25,7 +25,7 @@ I have followed some tutorials and I have used several resources to reach my goa
 
 [How to send email with Django](https://www.youtube.com/watch?v=xNqnHmXIuzU)
 
-[Django documentation on send_email()](https://docs.djangoproject.com/en/5.0/topics/email/)
+[Django documentation on send_email()](https://docs.djangoproject.com/en/5.0/topics/email/)(https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-ADMINS)
 
 [Django REST-auth documentation on userdetail serializer](https://dj-rest-auth.readthedocs.io/en/latest/faq.html)
 
