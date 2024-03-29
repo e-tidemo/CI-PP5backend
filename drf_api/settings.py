@@ -83,8 +83,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'DEV' in os.environ
-DEBUG = 'DEBUG' in os.environ
-
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '8000-etidemo-cipp5backend-luf7m25822q.ws-eu110.gitpod.io', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
 """
 CORS_ALLOWED_ORIGIN_REGEXES = []
@@ -211,8 +210,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
 EMAIL_BACKEND = 'django_mail_admin.backends.CustomEmailBackend'
