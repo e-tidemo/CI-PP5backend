@@ -3,6 +3,7 @@ from .models import Profile
 from crafts_followers.models import Followers
 from crafts_posts.serializers import PostSerializer
 from .validators import username_validator
+import cloudinary
 
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
@@ -12,6 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     follower_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
     posts = PostSerializer(many=True, read_only=True)
+    image_url = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -25,6 +27,14 @@ class ProfileSerializer(serializers.ModelSerializer):
             ).first()
             return following.id if following else None
         return None
+    
+    def get_image_url(self, obj):
+        # Generate the image URL using Cloudinary
+        if obj.image:
+            return cloudinary.CloudinaryImage(obj.image).build_url()
+        else:
+            # Return the URL of the default image if no custom image is set
+            return cloudinary.CloudinaryImage('default_profile_rkxcnv').build_url()
     
     class Meta:
         model = Profile
