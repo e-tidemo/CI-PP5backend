@@ -55,9 +55,13 @@ class Contact(models.Model):
         return self.name + " - " + self.subject
     
     class Meta:
-        verbose_name = 'Email to admin of World of Craft'
-        verbose_name_plural = 'Emails to admin of World of Craft'
+        verbose_name = 'Messages to admin of World of Craft'
+        verbose_name_plural = 'Messages to admin of World of Craft'
+        
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
+"""
     def save(self, *args, **kwargs):
         if self.code is not None:  # Add any conditions for sending email
             recipients = [admin[1] for admin in settings.ADMINS]
@@ -75,43 +79,4 @@ class Contact(models.Model):
             msg.send()
 
         super().save(*args, **kwargs)
-"""    
-    
-    def save(self, *args, **kwargs):
-        print("Before saving the contact instance...")
-
-        if self.code is not None:
-            print("Code is set:", self.code)
-            html_content = (
-                '<h1 style="text-align:center">' +
-                self.name +
-                '</h1><br><p style="text-align:center">'
-                'wants to send a message regarding'
-                '</p>' + self.ContactChoices + '<p>'
-                'They say </p>' + self.message
-            )
-        else:
-            print("Code is not set. Email won't be sent.")
-            html_content = (
-                '<h1 style="text-align:center">' +
-                self.name +
-                '</h1><br><p>' + self.message + '</p>'
-                '<p>' + 'On the subject of' + 
-                self.ContactChoices + '</p>'
-            )
-
-        recipients = [admin[1] for admin in settings.ADMINS]
-        subject = self.subject
-        from_email = self.email
-        text_content = ''
-
-        msg = EmailMultiAlternatives(subject, text_content, from_email, recipients)
-        msg.attach_alternative(html_content, 'text/html')
-        msg.send()
-
-        print("Email sent!")
-
-        super().save(*args, **kwargs)
-
-        print("After saving the contact instance...")
 """
