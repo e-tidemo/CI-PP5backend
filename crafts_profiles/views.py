@@ -54,6 +54,9 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         
         # Fetch related posts
         profile.posts = profile.owner.post_set.all() 
+
+        #Fetch profile image
+        profile.profile_image = profile.image.url if profile.image else None
         
         return profile
 
