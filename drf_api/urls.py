@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import root_route, logout_route
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', root_route),

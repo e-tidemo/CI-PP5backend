@@ -116,7 +116,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'django_mail_admin',
     'corsheaders',
 
     'crafts_profiles',
@@ -131,6 +130,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -211,8 +211,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
 EMAIL_BACKEND = 'django_mail_admin.backends.CustomEmailBackend'
