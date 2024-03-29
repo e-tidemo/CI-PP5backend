@@ -17,6 +17,8 @@ import dj_database_url
 if os.path.exists('env.py'):
     import env
 
+ADMINS = [('Elvira Tidemo', 'elvira.inquiries@gmail.com')]
+
 database_url = os.environ.get("DATABASE_URL")
 parsed_db_config = dj_database_url.parse(os.environ.get('DATABASE_URL'))
 
@@ -114,6 +116,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'django_mail_admin',
     'corsheaders',
 
     'crafts_profiles',
@@ -212,10 +215,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django_mail_admin.backends.CustomEmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
