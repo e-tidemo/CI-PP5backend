@@ -14,6 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     following_count = serializers.ReadOnlyField()
     posts = PostSerializer(many=True, read_only=True)
     image_url = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -27,6 +28,12 @@ class ProfileSerializer(serializers.ModelSerializer):
             ).first()
             return following.id if following else None
         return None
+    
+    def get_following_count(self, obj):
+        user = self.context.get('request').user
+        if user.is_authenticated:
+            return Followers.objects.filter(owner=user).count()
+        return 0
     
     def get_image_url(self, obj):
         if obj.image:
