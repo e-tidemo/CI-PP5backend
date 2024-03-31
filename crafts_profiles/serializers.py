@@ -29,11 +29,12 @@ class ProfileSerializer(serializers.ModelSerializer):
         return None
     
     def get_image_url(self, obj):
-        # Generate the image URL using Cloudinary
         if obj.image:
-            return cloudinary.CloudinaryImage(obj.image).build_url()
+            if isinstance(obj.image, str):
+                return obj.image
+            else:
+                return cloudinary.CloudinaryImage(obj.image.name).build_url()
         else:
-            # Return the URL of the default image if no custom image is set
             return cloudinary.CloudinaryImage('default_profile_rkxcnv').build_url()
     
     class Meta:
@@ -42,7 +43,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'content', 'image', 'is_owner', 'following_id',
             'posts_count', 'follower_count', 'following_count',
-            'posts',
+            'posts', 'image_url',
         ]
         
     def get_object(self):
