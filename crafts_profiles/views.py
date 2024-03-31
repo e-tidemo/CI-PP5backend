@@ -48,9 +48,9 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
  
     def get_object(self):
-        # Get the profile object based on the provided username
-        username = self.kwargs.get('username')
-        profile = get_object_or_404(Profile, owner__username=username)
+        # Get the profile object based on the provided primary key
+        pk = self.kwargs.get('pk')
+        profile = get_object_or_404(Profile, pk=pk)
         
         # Fetch related posts
         profile.posts = profile.owner.post_set.all() 
