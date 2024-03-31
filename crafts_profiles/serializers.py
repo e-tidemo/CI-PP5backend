@@ -35,7 +35,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             else:
                 return cloudinary.CloudinaryImage(obj.image.name).build_url()
         else:
-            return cloudinary.CloudinaryImage('default_profile_rkxcnv').build_url()
+            return cloudinary.CloudinaryImage('default_profile_vzpmyf').build_url()
     
     class Meta:
         model = Profile
