@@ -83,7 +83,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'DEV' in os.environ
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '8000-etidemo-cipp5backend-luf7m25822q.ws-eu110.gitpod.io', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
 """
@@ -216,6 +216,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.example.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True   
