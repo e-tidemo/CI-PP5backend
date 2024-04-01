@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import ContactForm  # Import your ContactForm
+from django.views.decorators.csrf import csrf_exempt
+from .forms import ContactForm
 
+@csrf_exempt
 def contact_us_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
