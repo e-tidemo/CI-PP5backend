@@ -154,7 +154,7 @@ else:
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://.*\.gitpod\.io$",
     'http://localhost:3000',
-    'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com',
+    r'^https://world-of-craft-frontend-f2bcd7b16534\.herokuapp\.com$',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
