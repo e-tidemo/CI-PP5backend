@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_protect
+#from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
 from .forms import ContactForm
 from django.middleware.csrf import get_token
 from django.http import JsonResponse
 
-def csrf_token_view(request):
-    token = get_token(request)
-    return JsonResponse({'csrfToken': token})
+#def csrf_token_view(request):
+    #token = get_token(request)
+    #return JsonResponse({'csrfToken': token})
 
-@csrf_protect
+@csrf_exempt
 def contact_us_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
