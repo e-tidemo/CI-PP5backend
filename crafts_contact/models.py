@@ -36,13 +36,6 @@ class Contact(models.Model):
         help_text='Email message',
         validators=[MinLengthValidator(5)]
     )
-    code = models.CharField(
-        blank=True,
-        null=True,
-        max_length=100,
-        verbose_name='Code',
-        help_text='Code.'
-    )
     ContactChoices = models.CharField(
         max_length=1,
         choices=ContactChoices.choices,
@@ -60,23 +53,3 @@ class Contact(models.Model):
         
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-
-"""
-    def save(self, *args, **kwargs):
-        if self.code is not None:  # Add any conditions for sending email
-            recipients = [admin[1] for admin in settings.ADMINS]
-            subject = f"New message from {self.name}: {self.subject}"
-            from_email = self.email
-            text_content = self.message
-
-            html_content = (
-                f"<h1>{self.name}</h1>"
-                f"<p>{self.message}</p>"
-            )
-
-            msg = EmailMultiAlternatives(subject, text_content, from_email, recipients)
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
-
-        super().save(*args, **kwargs)
-"""
