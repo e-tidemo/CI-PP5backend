@@ -1,0 +1,18 @@
+<!-- panel_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ panel.title }}</title>
+</head>
+<body>
+    <h1>{{ panel.title }}</h1>
+    <p>{{ panel.content }}</p>
+    {% if panel.image %}
+        <img src="{{ panel.image.url }}" alt="{{ panel.title }}">
+    {% endif %}
+    <!-- Add other panel data as needed -->
+</body>
+</html>
