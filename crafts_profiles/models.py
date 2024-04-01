@@ -21,7 +21,10 @@ class Profile(models.Model):
 # Every time a user is created, a signal will trigger the Profile model to be created. 
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(owner=instance)
+        profile = Profile.objects.create(owner=instance)
+        if instance.is_superuser:
+            profile.owner.is_staff = True
+            profile.owner.save()
 
 
 post_save.connect(create_profile, sender=User)

@@ -15,6 +15,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     posts = PostSerializer(many=True, read_only=True)
     image_url = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()
+    is_staff = serializers.ReadOnlyField(source='owner.is_staff')
 
     def get_is_owner(self, obj):
         request = self.context['request']
