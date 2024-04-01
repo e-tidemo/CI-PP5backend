@@ -86,19 +86,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 #DEBUG = 'DEV' in os.environ
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:3000', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com', ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
+CSRF_TRUSTED_ORIGINS = ['localhost:3000', 'world-of-craft-frontend-f2bcd7b16534.herokuapp.com']
 CSRF_COOKIE_NAME = "csrftoken"
-"""
-CORS_ALLOWED_ORIGIN_REGEXES = []
 
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES.append(rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$")
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        'https://world-of-craft-0e06bf8581a1.herokuapp.com/',
-    ]"""
 # Application definition
 
 INSTALLED_APPS = [
