@@ -14,4 +14,4 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_api.settings')
 
 application = get_wsgi_application()
-application = WhiteNoise(application, root="/Users/elvir/world_of_craft/world_of_craft/backend/staticfiles/admin")
+application = WhiteNoise(application, root="/staticfiles/admin")
