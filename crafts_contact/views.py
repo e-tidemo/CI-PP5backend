@@ -22,3 +22,7 @@ def contact_us_view(request):
 
 def contact_us_success(request):
     return render(request, 'contact_us_success.html')
+
+def contact_form_view(request):
+    return render(request, 'contact_form.html')
+
