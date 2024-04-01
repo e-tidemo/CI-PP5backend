@@ -217,6 +217,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Email settings
 # https://docs.djangoproject.com/en/5.0/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True   
