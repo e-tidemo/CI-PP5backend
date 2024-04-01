@@ -89,6 +89,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
 CSRF_TRUSTED_ORIGINS = ['localhost:3000', 'world-of-craft-frontend-f2bcd7b16534.herokuapp.com']
 CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_HTTPONLY = False
 
 # Application definition
 
