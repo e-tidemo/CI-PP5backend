@@ -87,6 +87,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['http://localhost:3000', '127.0.0.1', '8000-etidemo-cipp5backend-luf7m25822q.ws-eu110.gitpod.io', 'world-of-craft-670e0fb14b24.herokuapp.com', ]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'https://world-of-craft-frontend-f2bcd7b16534.herokuapp.com', ]
+
 """
 CORS_ALLOWED_ORIGIN_REGEXES = []
 
