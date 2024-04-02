@@ -15,8 +15,12 @@ I also chose to overwrite the Django rest auth settings for signing in from user
 
 # Design
 
+[Why using dark colours on a website is more environmentally friendly](https://endtimes.dev/actually-dark-mode-can-save-the-world/)
+
 ## ERD
 ![Entity Relationship Diagram](documentation/planning/erd.jpg)
+
+
 ## Bugs
 I was stuck on the POST method of creating a post in the frontend for quite a while. As I pressed the submit button, it gave me a 500 Error (internal error). I was helped along by tutor Alan and tutor Oisin at the Code Institute to find the solution which was to untrack the env.py file and the /venv folder and add them to my .gitignore file. This enabled me to start creating posts on the app. I also used this online resource for instructions on how to untrack files:
 (https://stackoverflow.com/questions/1274057/how-do-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore)
@@ -50,6 +54,13 @@ As I started building my contact page in the frontend, quite soon I was stuck ag
 ![Solution in the frontend](documentation/bugs/contact-solution-frontend.png)
 
 # Credits
+
+### Sources
+
+Favicons:
+The favicon for the website is collected from [Favicon.io](https://favicon.io/)
+[Upload symbol by Ilham Fitrotul Hayat](https://www.flaticon.com/free-icon/upload_3097412?term=upload&page=1&position=2&origin=search&related_id=3097412)
+
 
 ## Code Used
 
