@@ -1,11 +1,10 @@
-from django.db.models import Count
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Profile
 from .serializers import ProfileSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
 from django.shortcuts import get_object_or_404
-
+from django.db.models import Count
 
 class ProfileList(generics.ListAPIView):
     """
@@ -42,7 +41,6 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
-        followers_count=Count('owner__followed', distinct=True),
         following_count=Count('owner__following', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
@@ -59,5 +57,3 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         profile.profile_image = profile.image.url if profile.image else None
         
         return profile
-
-
