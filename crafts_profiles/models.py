@@ -8,8 +8,9 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     content = models.TextField(max_length=500, null=True, blank=True)
-    image = models.ImageField(upload_to='images/', default='default_profile_vzpmyf')
-    followers_count = models.PositiveIntegerField(default=0)  # Add this line
+    image = models.ImageField(
+        upload_to='images/', default='default_profile_vzpmyf'
+    )
 
     class Meta:
         ordering = ['-created_at']
@@ -17,14 +18,10 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.owner}'s profile"
 
-
 # Every time a user is created, a signal will trigger the Profile model to be created. 
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        profile = Profile.objects.create(owner=instance)
-        if instance.is_superuser:
-            profile.owner.is_staff = True
-            profile.owner.save()
+        Profile.objects.create(owner=instance)
 
 
 post_save.connect(create_profile, sender=User)
