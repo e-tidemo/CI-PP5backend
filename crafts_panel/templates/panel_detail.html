@@ -1,18 +1,21 @@
 <!-- panel_detail.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ panel.title }}</title>
 </head>
 <body>
     <h1>{{ panel.title }}</h1>
     <p>{{ panel.content }}</p>
     {% if panel.image %}
-        <img src="{{ panel.image.url }}" alt="{{ panel.title }}">
+        <img src="{{ panel.image.url }}" alt="{{ panel.alt_text }}">
     {% endif %}
-    <!-- Add other panel data as needed -->
+    {% if panel.video_url %}
+        <iframe width="560" height="315" src="{{ panel.video_url }}" frameborder="0" allowfullscreen></iframe>
+    {% endif %}
+    <p>Owner: {{ panel.owner }}</p>
+    <p>Created at: {{ panel.created_at }}</p>
+    <p>Published: {{ panel.published }}</p>
 </body>
 </html>

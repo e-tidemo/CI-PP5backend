@@ -1,0 +1,26 @@
+<!-- panel_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Advice</title>
+</head>
+<body>
+    <h1>Advice Panels</h1>
+    {% for panel in panels %}
+        <div>
+            <h2>{{ panel.title }}</h2>
+            <p>{{ panel.content }}</p>
+            {% if panel.image %}
+                <img src="{{ panel.image.url }}" alt="{{ panel.alt_text }}">
+            {% endif %}
+            {% if panel.video_url %}
+                <iframe width="560" height="315" src="{{ panel.video_url }}" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
+            <p>Owner: {{ panel.owner }}</p>
+            <p>Created at: {{ panel.created_at }}</p>
+            <p>Published: {{ panel.published }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
