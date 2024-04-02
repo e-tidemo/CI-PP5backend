@@ -33,4 +33,5 @@ urlpatterns = [
     path('', include('crafts_likes.urls')),
     path('', include('crafts_contact.urls')),
     path('', include('crafts_followers.urls')),
+    path('api/', include('crafts_panel.urls')),
 ]
