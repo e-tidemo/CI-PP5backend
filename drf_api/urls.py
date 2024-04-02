@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', root_route),
     path('admin/', admin.site.urls),
+    path('api/', include('crafts_panel.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('dj-rest-auth/logout/', logout_route),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
@@ -33,5 +34,4 @@ urlpatterns = [
     path('', include('crafts_likes.urls')),
     path('', include('crafts_contact.urls')),
     path('', include('crafts_followers.urls')),
-    path('api/', include('crafts_panel.urls')),
 ]
